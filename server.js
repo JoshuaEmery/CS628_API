@@ -18,4 +18,5 @@ app.get("/", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
+  console.log(`Connection string: ${process.env.MONGO_URI}`);
 });
