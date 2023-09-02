@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 const cors = require("cors");
 const playerData = require("./config/data");
+const connectDB = require("./config/db");
+
+connectDB();
 
 const port = process.env.PORT || 5000;
 
@@ -13,11 +16,9 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/players", (req, res) => {
-  res.send(playerData);
-});
+app.use("/players", require("./routes/routes"));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
-  console.log(`Connection string: ${process.env.MONGO_URI}`);
+  console.log(`Connection string: ${process.env.ATLAS_URI}`);
 });
